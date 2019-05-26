@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> <%=title%></title>
+  </head>
+  <body>
+    <h1> <%=title%></h1>
+    Title: <%= post.title%><p>
+    Content: <%= post.content%><p>
+    Author: <%= post.author%><p>
+    <a href="/posts/postupdate/<%=post._id%>"><button type="button" name="button">Update</button></a>
+    <button type="button" name="button" onclick="del()">Delete</button>
+  </body>
+  <script type="text/javascript">
+    function del(){
+      var com=confirm("Are you sure?")
+      if(com){
+        location.href='/posts/postdel/<%=post._id%>'
+      }
+    }
+  </script>
+</html>

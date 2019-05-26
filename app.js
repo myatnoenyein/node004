@@ -2,12 +2,19 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var mongoose=require('mongoose')
 var logger = require('morgan');
+var session=require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+mongoose.connect('mongodb+srv://myatnoenyein:myatnoe212594@nodejs004db-zrrlq.mongodb.net/test?retryWrites=trueb')
+var db=mongoose.connection
+db.on('error',console.error.bind(console,'MongoDB connectin error;'))
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +26,40 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(session({
+   secret:'@m$n#%2&214*09^',
+   resave: false,
+   saveUninitialized:true
+}));
+
 app.use('/', indexRouter);
+app.use(function (req,res,next){
+  res.locals.user=req.session.user;
+  next();
+})
+
+// app.use(function (req,res,next){
+//   if(req.session.user){
+//     next();
+//   }else{
+//     res.redirect('/signin')
+//   }
+// })
+
 app.use('/users', usersRouter);
+app.use(function(req,res,next){
+  res.locals.user=req.session.user;
+  next();
+})
+
+app.use(function(req,res,next){
+  if(req.session.user){
+    next()
+  }else{
+  res.redirect('/users/useradd')
+}
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

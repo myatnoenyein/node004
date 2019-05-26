@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> <%=title%></title>
+  </head>
+  <body>
+    <h1> <%=title%></h1>
+    <form action="/posts/postadd" method="post">
+      <label for="ptitle">Title</label>
+      <input type="text" name="ptitle" id="ptitle" value=""><p>
+      <label for="pcon">Content</label>
+      <textarea name="pcon" rows="8" cols="80"></textarea><p>
+      <label for="pauthor">Author</label>
+      <input type="text" name="pauthor"  id="pauthor" value=""><p>
+      <input type="submit" name="submit"  id="submit" value="submit">
+    </form>
+  </body>
+</html>

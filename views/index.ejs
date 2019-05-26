@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <title> <%=title%> </title>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1> <%=title%> </h1>
+    <form action="/users/useradd" method="post">
+      <label for="name">User Name</label>
+      <input type="text" name="name" id="name" value="" required><p>
+        <label for="email">User Email</label>
+        <input type="email" name="email" id="email" value="" required><p>
+          <label for="password">User Password</label>
+          <input type="password" name="password" id="password" value="" required><p>
+            <input type="submit" name="submit" value="submit">
+    </form>
   </body>
+  <script src="/javascripts/jquery-3.4.1.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $('#email').blur(function(){
+      var datae={email: $('#email').val()};
+      $.ajax({url:'/users/emaildu',data:datae, type:'POST',
+              success: function (result){
+            if(result.status){
+              alert('Duplicated or Not validate email address');
+              $('#email').val("");
+              $('#email').focus();
+            }
+          }
+            })
+    })
+  </script>
 </html>

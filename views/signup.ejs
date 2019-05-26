@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Signup</title>
+  </head>
+  <% include partial/head %>
+  <!-- Required meta tags -->
+  <style>
+  html,
+  body {
+      height: 100%;
+  }
+
+  body {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+  }
+  </style>
+</head>
+<!-- ============================================================== -->
+<!-- signup form  -->
+<!-- ============================================================== -->
+
+<body>
+  <!-- ============================================================== -->
+  <!-- signup form  -->
+  <!-- ============================================================== -->
+  <form class="splash-container" action="/singup" method="post" name="frm">
+      <div class="card">
+          <div class="card-header">
+              <h3 class="mb-1">Registrations Form</h3>
+              <p>Please enter your user information.</p>
+          </div>
+          <div class="card-body">
+              <div class="form-group">
+                  <input class="form-control form-control-lg" type="text" name="name" id="name" required="" placeholder="Username" autocomplete="off">
+              </div>
+              <div class="form-group">
+                  <input class="form-control form-control-lg" type="email" name="email" id="email" required="" placeholder="E-mail" autocomplete="off">
+              </div>
+              <div class="form-group">
+                  <input class="form-control form-control-lg" id="password" type="password" name="password" required="" placeholder="Password">
+              </div>
+              <!-- <div class="form-group">
+                  <input class="form-control form-control-lg" required="" placeholder="Confirm">
+              </div> -->
+              <div class="form-group pt-2">
+                  <button class="btn btn-block btn-primary" type="button" onclick="check()">Register My Account</button>
+              </div>
+              <div class="form-group">
+                  <label class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox"><span class="custom-control-label">By creating an account, you agree the <a href="#">terms and conditions</a></span>
+                  </label>
+              </div>
+              <div class="form-group row pt-0">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                      <button class="btn btn-block btn-social btn-facebook " type="button">Facebook</button>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <button class="btn  btn-block btn-social btn-twitter" type="button">Twitter</button>
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer bg-white">
+              <p>Already member? <a href="#" class="text-secondary">Login Here.</a></p>
+          </div>
+      </div>
+  </form>
+</body>
+
+  <script src="/javascripts/jquery-3.4.1.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $('#email').blur(function(){
+      var datam={email:$('#email').val()}
+      $.ajax({url:'/emaildu',data:datam,type:'POST',
+      success:function(result){
+        if(result.status){
+          alert('Duplicated email address');
+          $('#email').val("")
+          $('#email').focus()
+        }
+      }
+    })
+    })
+    function check(){
+      var datap={password:$('#password').val()}
+      $.ajax({url:'/pwdcheck',data:datap,type:'POST',
+      success:function(result){
+        if(result.status){
+        frm.submit()
+      }else{
+        $('#password').val("")
+        $('#password').focus()
+        alert('Your Password is not validate')
+      }
+    }
+  })
+}
+  </script>
+</html>
