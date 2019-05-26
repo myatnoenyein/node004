@@ -1,34 +1,65 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title> <%=title%> </title>
-  </head>
-  <body>
-    <h1> <%=title%> </h1>
-    <form action="/users/useradd" method="post">
-      <label for="name">User Name</label>
-      <input type="text" name="name" id="name" value="" required><p>
-        <label for="email">User Email</label>
-        <input type="email" name="email" id="email" value="" required><p>
-          <label for="password">User Password</label>
-          <input type="password" name="password" id="password" value="" required><p>
-            <input type="submit" name="submit" value="submit">
-    </form>
-  </body>
-  <script src="/javascripts/jquery-3.4.1.js" charset="utf-8"></script>
-  <script type="text/javascript">
-    $('#email').blur(function(){
-      var datae={email: $('#email').val()};
-      $.ajax({url:'/users/emaildu',data:datae, type:'POST',
-              success: function (result){
-            if(result.status){
-              alert('Duplicated or Not validate email address');
-              $('#email').val("");
-              $('#email').focus();
-            }
-          }
-            })
-    })
-  </script>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <% include partial/head %>
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header text-center"><a href="../index.html"><img class="logo-img" src="/assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="name" type="text" placeholder="Username" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="password" type="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                </form>
+            </div>
+            <div class="card-footer bg-white p-0  ">
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="#" class="footer-link">Create An Account</a></div>
+                <div class="card-footer-item card-footer-item-bordered">
+                    <a href="#" class="footer-link">Forgot Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
 </html>
