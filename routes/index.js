@@ -14,7 +14,7 @@ router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Home Page' });
 })
 
-router.get('/singup',function(req,res,next){
+router.get('/signup',function(req,res,next){
   res.render('signup')
 })
 
