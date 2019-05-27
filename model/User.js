@@ -11,6 +11,9 @@ var UserSchema=new Schema({
     required:true,
     unique:true
   },
+  imgUrl:{
+    type:String
+  },
   password:{
     type:String,
     required:true

@@ -31,7 +31,7 @@
                       <div class="card">
                           <h5 class="card-header"><%= title %></h5>
                           <div class="card-body">
-                              <form action="/users/useradd" method="post" data-parsley-validate="">
+                              <form action="/users/useradd" method="post" data-parsley-validate="" enctype="multipart/form-data">
                                   <div class="form-group">
                                       <label for="inputUserName">User Name</label>
                                       <input id="inputUserName" type="text" name="name" data-parsley-trigger="change" required="" placeholder="Enter user name" autocomplete="off" class="form-control">
@@ -39,6 +39,10 @@
                                   <div class="form-group">
                                       <label for="inputEmail">Email address</label>
                                       <input id="inputEmail" type="email" name="email" data-parsley-trigger="change" required="" placeholder="Enter email" autocomplete="off" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="uploadImg">Image</label>
+                                      <input id="uploadImg" type="file" name="uploadImg" data-parsley-trigger="change" required="" placeholder="Enter email" autocomplete="off" class="form-control">
                                   </div>
                                   <div class="form-group">
                                       <label for="inputPassword">Password</label>

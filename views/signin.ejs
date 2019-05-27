@@ -29,7 +29,7 @@
         <div class="card ">
             <div class="card-header text-center"><a href="../index.html"><img class="logo-img" src="../assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
-                <form action="/signin" method="post">
+                <form action="/signin" method="post" name="frm">
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="email" type="email" name="email" placeholder="Your Email" autocomplete="off">
                     </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
+                            <input class="custom-control-input" type="checkbox" id="rememberMe"><span class="custom-control-label">Remember Me</span>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
@@ -58,6 +58,22 @@
     <!-- Optional JavaScript -->
     <script src="/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        frm.onsubmit=function(){
+          if(frm.rememberMe.checked){
+            Cookies.set('email',frm.email.value,{expires: 7})
+          }else {
+            Cookies.remove('email');
+          }
+        }
+        if(Cookies.get('email')){
+          frm.email.value=Cookies.get('email')
+          frm.rememberMe.checked=true;
+        }
+      })
+    </script>
 </body>
 
 </html>
