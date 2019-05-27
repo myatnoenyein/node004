@@ -39,13 +39,13 @@ app.use(function (req,res,next){
   next();
 })
 
-// app.use(function (req,res,next){
-//   if(req.session.user){
-//     next();
-//   }else{
-//     res.redirect('/signin')
-//   }
-// })
+app.use(function (req,res,next){
+  if(req.session.user){
+    next();
+  }else{
+    res.redirect('/signin')
+  }
+})
 
 app.use('/users', usersRouter);
 // app.use(function(req,res,next){
