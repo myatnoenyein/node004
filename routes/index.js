@@ -23,6 +23,7 @@ router.post('/signup',function(req,res,next){
   admin.name=req.body.name;
   admin.email=req.body.email;
   admin.password=req.body.password;
+  console.log('Admin=====>',admin);
   admin.save(function(err,rtn){
     if(err) throw err;
     console.log(rtn);
@@ -37,7 +38,7 @@ router.get('/signin',function(req,res,next){
 router.post('/signin',function(req,res,next){
   Admin.findOne({email:req.body.email},function (err,admin){
     if(err) throw err;
-    console.log(admin,req.body.email);
+    
     if(admin != null && Admin.compare(req.body.password,admin.password)){
       req.session.user = {name:admin.name, email:admin.email, id:admin._id}
       res.redirect('/users/useradd')

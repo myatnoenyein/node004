@@ -50,18 +50,6 @@ app.use(function (req,res,next){
 })
 
 app.use('/users', usersRouter);
-// app.use(function(req,res,next){
-//   res.locals.user=req.session.user;
-//   next();
-// })
-//
-// app.use(function(req,res,next){
-//   if(req.session.user){
-//     next()
-//   }else{
-//   res.redirect('/users/useradd')
-// }
-// })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
