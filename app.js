@@ -33,11 +33,13 @@ app.use(session({
    saveUninitialized:true
 }));
 
-app.use('/', indexRouter);
 app.use(function (req,res,next){
   res.locals.user=req.session.user;
   next();
 })
+
+
+app.use('/', indexRouter);
 
 app.use(function (req,res,next){
   if(req.session.user){
